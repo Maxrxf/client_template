@@ -121,68 +121,82 @@
     "outbounds":[
         "<INBOUND_REPLACE>",
         {
-            "type":"selector",
-            "tag":"✈️ Proxy",
-            "outbounds":[
-                "direct",
+          "type": "selector",
+          "tag": "✈️ Proxy",
+          "outbounds": [
+              "♻️ 自动选择",
+              "direct",
+              "<NODE_REPLACE>"
+          ]
+        },
+        {
+            "type": "urltest",
+            "tag": "♻️ 自动选择",
+            "outbounds": [
+                "<NODE_REPLACE>"
+            ],
+            "url": "http://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        },
+        {
+            "type": "selector",
+            "tag": "📱 Telegram",
+            "outbounds": [
+                "♻️ 自动选择",
+                "🎯 direct",
                 "<NODE_REPLACE>"
             ]
         },
         {
-            "type":"selector",
-            "tag":"📱 Telegram",
-            "outbounds":[
-                "direct",
+            "type": "selector",
+            "tag": "▶️ YouTube",
+            "outbounds": [
+                "♻️ 自动选择",
+                "🎯 direct",
                 "<NODE_REPLACE>"
             ]
         },
         {
-            "type":"selector",
-            "tag":"▶️ YouTube",
-            "outbounds":[
-                "direct",
+            "type": "selector",
+            "tag": "🤖 OpenAI",
+            "outbounds": [
+                "♻️ 自动选择",
+                "🎯 direct",
                 "<NODE_REPLACE>"
             ]
         },
         {
-            "type":"selector",
-            "tag":"🤖 OpenAI",
-            "outbounds":[
-                "direct",
-                "<NODE_REPLACE>"
-            ]
-        },
-        {
-            "type":"selector",
-            "tag":"🎯 direct",
-            "outbounds":[
+            "type": "selector",
+            "tag": "🎯 direct",
+            "outbounds": [
                 "direct",
                 "block",
                 "✈️ Proxy"
             ],
-            "default":"direct"
+            "default": "direct"
         },
         {
-            "type":"selector",
-            "tag":"🛑 block",
-            "outbounds":[
+            "type": "selector",
+            "tag": "🛑 block",
+            "outbounds": [
                 "block",
                 "direct",
                 "✈️ Proxy"
             ],
-            "default":"block"
+            "default": "block"
         },
         {
-            "tag":"direct",
-            "type":"direct"
+            "tag": "direct",
+            "type": "direct"
         },
         {
-            "tag":"block",
-            "type":"block"
+            "tag": "block",
+            "type": "block"
         },
         {
-            "tag":"dns",
-            "type":"dns"
+            "tag": "dns",
+            "type": "dns"
         }
     ],
     "route":{
