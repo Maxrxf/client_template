@@ -89,7 +89,7 @@
             "inet4_address": "172.19.0.1/30",
             "auto_route": true,
             "strict_route": true,
-            "stack": "mixed",
+            "stack": "gvisor",
             "sniff": true
         }
     ],
@@ -120,7 +120,8 @@
             "type": "urltest",
             "tag": "♻️ 自动选择",
             "outbounds": [
-                "DIRECT"
+                "DIRECT",
+                "<NODE_REPLACE>"
             ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "5m",
