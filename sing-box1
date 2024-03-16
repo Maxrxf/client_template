@@ -4,6 +4,10 @@
     "timestamp": false
   },
   "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "default_mode": "rule"
+    },
     "cache_file": {
       "enabled": true,
       "path": "cache.db",
@@ -35,90 +39,56 @@
   "dns": {
     "servers": [
       {
-        "tag": "dns_proxy",
-        "address": "https://1.1.1.1/dns-query",
-        "address_resolver": "dns_resolver",
-        "strategy": "ipv4_only",
-        "detour": "proxy"
+        "tag": "google",
+        "address": "tls://8.8.4.4"
       },
       {
-        "tag": "dns_direct",
-        "address": "https://dns.alidns.com/dns-query",
-        "address_resolver": "dns_resolver",
-        "strategy": "ipv4_only",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns_resolver",
+        "tag": "local",
         "address": "223.5.5.5",
         "detour": "direct"
       },
       {
-        "tag": "dns_success",
-        "address": "rcode://success"
-      },
-      {
-        "tag": "dns_refused",
-        "address": "rcode://refused"
-      },
-      {
-        "tag": "dns_fakeip",
+        "tag": "dns-fakeip",
         "address": "fakeip"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
       }
     ],
     "rules": [
       {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "rule_set": "geosite-category-ads-all"
+          },
+          {
+            "domain_suffix": [
+              "appcenter.ms",
+              "app-measurement.com",
+              "firebase.io",
+              "crashlytics.com",
+              "google-analytics.com"
+            ]
+          }
+        ],
+        "disable_cache": true,
+        "server": "dns-block"
+      },
+      {
         "outbound": "any",
-        "server": "dns_resolver"
+        "server": "local"
       },
       {
-        "clash_mode": "Direct",
-        "server": "dns_resolver"
-      },
-      {
-        "clash_mode": "Global",
-        "server": "dns_proxy"
-      },
-      {
-        "rule_set": "geosite-category-ads-all",
-        "domain_suffix": [
-          ".mcdn.bilivideo.cn",
-          ".szbdyd.com"
-        ],
-        "domain_regex": [
-          "cn-[a-zA-Z0-9-]+\\.bilivideo\\.com",
-          "[a-zA-Z0-9-]+-pcdn-[a-zA-Z0-9-]+\\.biliapi\\.net"
-        ],
-        "server": "dns_success",
-        "disable_cache": true
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
         "query_type": [
           "A",
           "AAAA"
         ],
-        "server": "dns_fakeip"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
-        "query_type": [
-          "CNAME"
-        ],
-        "server": "dns_proxy"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA",
-          "CNAME"
-        ],
-        "invert": true,
-        "server": "dns_refused",
-        "disable_cache": true
+        "server": "dns-fakeip"
       }
     ],
-    "final": "dns_direct",
     "independent_cache": true,
     "fakeip": {
       "enabled": true,
