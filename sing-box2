@@ -408,7 +408,7 @@
           "geoip-private",
           "geoip-cn"
         ],
-        "outbound": "🎯 全球直连"
+        "outbound": "DIRECT"
       },
       {
         "rule_set": [
