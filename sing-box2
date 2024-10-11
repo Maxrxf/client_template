@@ -143,6 +143,7 @@
       "tag": "🚀 节点选择",
       "outbounds": [
         "DIRECT",
+        "REJECT",
         "♻️ 自动选择",
         "<NODE_REPLACE>"
       ],
@@ -203,13 +204,15 @@
         "REJECT",
         "DIRECT",
         "🚀 节点选择",
-        "♻️ 自动选择"
+        "♻️ 自动选择",
+        "<NODE_REPLACE>"
       ]
     },
     {
       "type": "selector",
       "tag": "GLOBAL",
       "outbounds": [
+        "DIRECT",
         "DIRECT",
         "🚀 节点选择",
         "♻️ 自动选择",
