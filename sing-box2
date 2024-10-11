@@ -180,7 +180,7 @@
       "type": "selector",
       "tag": "Ⓜ️ 微软服务",
       "outbounds": [
-        "🎯 全球直连",
+        "DIRECT",
         "🚀 节点选择",
         "♻️ 自动选择",
         "<NODE_REPLACE>"
@@ -190,19 +190,10 @@
       "type": "selector",
       "tag": "🤖 ChatGPT",
       "outbounds": [
-        "🚀 节点选择",
-        "🎯 全球直连",
-        "♻️ 自动选择",
-        "<NODE_REPLACE>"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🎯 全球直连",
-      "outbounds": [
         "DIRECT",
         "🚀 节点选择",
-        "♻️ 自动选择"
+        "♻️ 自动选择",
+        "<NODE_REPLACE>"
       ]
     },
     {
@@ -210,16 +201,19 @@
       "tag": "🛑 全球拦截",
       "outbounds": [
         "REJECT",
-        "DIRECT"
+        "DIRECT",
+        "🚀 节点选择",
+        "♻️ 自动选择"
       ]
     },
     {
       "type": "selector",
       "tag": "GLOBAL",
       "outbounds": [
-        "🚀 节点选择",
         "DIRECT",
-        "♻️ 自动选择"
+        "🚀 节点选择",
+        "♻️ 自动选择",
+        "<NODE_REPLACE>"
       ]
     }
   ],
