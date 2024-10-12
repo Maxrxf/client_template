@@ -213,7 +213,7 @@
       "tag": "GLOBAL",
       "outbounds": [
         "DIRECT",
-        "DIRECT",
+        "REJECT",
         "🚀 节点选择",
         "♻️ 自动选择",
         "<NODE_REPLACE>"
