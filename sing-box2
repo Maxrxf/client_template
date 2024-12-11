@@ -33,10 +33,6 @@
         "server": "dns_resolver"
       },
       {
-        "clash_mode": "Direct",
-        "server": "dns_direct"
-      },
-      {
         "clash_mode": "Global",
         "server": "dns_proxy"
       },
@@ -49,7 +45,16 @@
         "disable_cache": true
       },
       {
-        "rule_set": "geosite-geolocation-cn",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "clash_mode": "Direct"
+          },
+          {        
+            "rule_set": "geosite-geolocation-cn"
+          }
+        ],
         "server": "dns_direct"
       },
       {
@@ -321,14 +326,6 @@
         "action": "hijack-dns"
       },
       {
-        "clash_mode": "Global",
-        "outbound": "GLOBAL"
-      },
-      {
-        "clash_mode": "Direct",
-        "outbound": "DIRECT"
-      },
-      {
         "type": "logical",
         "mode": "or",
         "rules": [
@@ -340,37 +337,57 @@
             "port": 443
           },
           {
-          "protocol":"stun"
+            "protocol": "stun"
+          },
+          {
+            "rule_set": [
+              "geosite-category-ads-all",
+              "geosite-openai@ads"
+            ]
           }
         ],
-        "action": "reject"
+        "action": "reject",
+        "method": "default"
       },
       {
-        "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-openai@ads"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "clash_mode": "Direct"
+          },
+          {
+            "ip_is_private": true
+          },
+          {
+            "rule_set": [
+              "geosite-private",
+              "geosite-cn",
+              "geoip-private",
+              "geoip-cn"
+            ]
+          },
+          {
+            "protocol": "stun"
+          }
         ],
-        "action": "reject"
-      },
-      {
-        "ip_is_private": true,
         "outbound": "DIRECT"
       },
       {
-        "rule_set": [
-          "geosite-private",
-          "geosite-cn",
-          "geoip-private",
-          "geoip-cn"
-        ],
-        "outbound": "DIRECT"
-      },
-      {
-        "rule_set": [
-          "geosite-youtube",
-          "geosite-github",
-          "geosite-google",
-          "geoip-google"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "clash_mode": "Global"
+          },
+          {
+            "rule_set": [
+              "geosite-youtube",
+              "geosite-github",
+              "geosite-google",
+              "geoip-google"
+            ]
+          }
         ],
         "outbound": "GLOBAL"
       },
