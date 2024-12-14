@@ -33,18 +33,18 @@ dns:
     - ntp.*.com
     - +.market.xiaomi.com
   nameserver-policy:
-    "rule-set:cn_domain,private_domain": 
+    "rule-set:cn_domain,bilibili_domain": 
       - https://dns.alidns.com/dns-query#h3=true
-      - https://doh.pub/dns-query
-    "rule-set:geolocation-!cn,google_domain,github_domain":
-      - https://dns.cloudflare.com/dns-query
-      - https://dns.google/dns-query
+      - https://doh.pub/dns-query#h3=true
+    "rule-set:geolocation-!cn":
+      - https://dns.cloudflare.com/dns-query#h3=true
+      - https://dns.google/dns-query#h3=true
   nameserver:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query#h3=true
+    - https://dns.google/dns-query#h3=true
   proxy-server-nameserver:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - https://dns.alidns.com/dns-query#h3=true
+    - https://doh.pub/dns-query#h3=true
 
 sniffer:
   enable: true
@@ -114,9 +114,9 @@ proxy-groups:
   - {name: JP, type: select, include-all: true, filter: "(?i)日|jp|japan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"}
   - {name: US, type: select, include-all: true, filter: "(?i)美|us|unitedstates|united states", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"}
   - {name: SG, type: select, include-all: true, filter: "(?i)(新|sg|singapore)", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"}
-  - {name: Others, type: select, include-all: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|Direct)).*", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Available.png"}
-  - {name: Auto, type: url-test, include-all: true, filter: "(?i)^(?!.*(?:Direct)).*",tolerance: 10, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"}
-  - {name: Global, type: select, include-all: true, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"}
+  - {name: Others, type: select, include-all-providers: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Available.png"}
+  - {name: Auto, type: url-test, include-all-providers: true, tolerance: 10, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"}
+  - {name: Global, type: select, include-all-providers: true, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"}
 
   - {name: HK-Auto,type: url-test, include-all: true, filter: "(?i)港|hk|hongkong|hong kong", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"}
   - {name: JP-Auto,type: url-test, include-all: true, filter: "(?i)日|jp|japan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"}
