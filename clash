@@ -82,7 +82,7 @@ tun:
 
 ######### 锚点 start #######
 # 策略组相关
-pr: &pr {type: select, proxies: [Default, HK, HK-Auto, JP, JP-Auto, SG, SG-Auto, US, US-Auto, Others, Global, Auto, Direct]}
+pr: &pr {type: select, proxies: [Default, HK, HK-Auto, JP, JP-Auto, KR, KR-Auto, SG, SG-Auto, US, US-Auto, Others, Global, Auto, Direct]}
 #这里是订阅更新和延迟测试相关的
 p: &p {type: http, interval: 3600, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
 ######### 锚点 end #######
@@ -99,7 +99,7 @@ proxies:
     udp: true
 
 proxy-groups:
-  - {name: Default, type: select, proxies: [Auto, Direct, HK, HK-Auto, JP, JP-Auto, SG, SG-Auto, US, US-Auto, Others, Global], icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Proxy.png"}
+  - {name: Default, type: select, proxies: [Auto, Direct, HK, HK-Auto, JP, JP-Auto, KR, KR-Auto, SG, SG-Auto, US, US-Auto, Others, Global], icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Proxy.png"}
   - {name: 哔哩东南亚, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/bilibili.png"}
   - {name: 哔哩哔哩, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/bilibili.png"}
   - {name: Google, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png"}
@@ -107,21 +107,23 @@ proxy-groups:
   - {name: YouTube, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png"}
   - {name: NETFLIX, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Netflix.png"}
   - {name: ChatGPT, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Bot.png"}
-  - {name: 国内, type: select, proxies: [Direct, Default, HK, HK-Auto, JP, JP-Auto, SG, SG-Auto, US, US-Auto, Others, Global, Auto], icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/China_Map.png"}
+  - {name: 国内, type: select, proxies: [Direct, Default, HK, HK-Auto, JP, JP-Auto, KR, KR-Auto, SG, SG-Auto, US, US-Auto, Others, Global, Auto], icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/China_Map.png"}
   - {name: 其他, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"}
   #分隔,下面是地区分组
   - {name: HK, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"}
   - {name: JP, type: select, include-all: true, filter: "(?i)日|jp|japan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"}
+  - {name: KR, type: select, include-all: true, filter: "(?i)韩|kr|korea", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/KR.png"}
+  - {name: SG, type: select, include-all: true, filter: "(?i)新|sg|singapore", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"}
   - {name: US, type: select, include-all: true, filter: "(?i)美|us|unitedstates|united states", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"}
-  - {name: SG, type: select, include-all: true, filter: "(?i)(新|sg|singapore)", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"}
-  - {name: Others, type: select, include-all-providers: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Available.png"}
+  - {name: Others, type: select, include-all-providers: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇰🇷|🇸🇬|🇺🇸|🇨🇳|港|hk|hongkong|日|jp|japan|韩|kr|korea|新|sg|singapore|美|us|unitedstates)).*", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Available.png"}
   - {name: Auto, type: url-test, include-all-providers: true, tolerance: 10, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"}
   - {name: Global, type: select, include-all-providers: true, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"}
 
   - {name: HK-Auto,type: url-test, include-all: true, filter: "(?i)港|hk|hongkong|hong kong", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"}
   - {name: JP-Auto,type: url-test, include-all: true, filter: "(?i)日|jp|japan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"}
+  - {name: KR-Auto,type: url-test, include-all: true, filter: "(?i)韩|kr|korea", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/KR.png"}
+  - {name: SG-Auto,type: url-test, include-all: true, filter: "(?i)新|sg|singapore", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"}
   - {name: US-Auto,type: url-test, include-all: true, filter: "(?i)美|us|unitedstates|united states", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"}
-  - {name: SG-Auto,type: url-test, include-all: true, filter: "(?i)(新|sg|singapore)", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"}
 
 rules:
   - RULE-SET,private_ip,Direct,no-resolve
