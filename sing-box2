@@ -366,9 +366,6 @@
               "geoip-private",
               "geoip-cn"
             ]
-          },
-          {
-            "protocol": "stun"
           }
         ],
         "outbound": "DIRECT"
